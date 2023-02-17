@@ -1,13 +1,10 @@
 package com.example.cinemaspringboot;
 
 import com.example.cinemaspringboot.database.entity.User;
-import com.example.cinemaspringboot.database.entity.UserRole;
 import com.example.cinemaspringboot.database.repository.UserRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-
-import java.util.Optional;
 
 @SpringBootApplication
 public class CinemaSpringBootApplication {
