@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cinema
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      pool-name: HikariCP-1
+      auto-commit: true
+  jpa:
+    properties.hibernate:
+      show_sql: true
+      format_sql: true
