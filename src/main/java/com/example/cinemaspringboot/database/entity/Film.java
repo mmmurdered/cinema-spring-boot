@@ -3,12 +3,11 @@ package com.example.cinemaspringboot.database.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "film")
 public class Film {
 
     @Id
@@ -30,3 +29,5 @@ public class Film {
     @Column(nullable = false)
     private Double imdb_rating;
 }
+
+

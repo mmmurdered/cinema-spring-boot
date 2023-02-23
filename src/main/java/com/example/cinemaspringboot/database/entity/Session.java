@@ -1,27 +1,27 @@
 package com.example.cinemaspringboot.database.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "session")
 public class Session {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    //@DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
     @Column(nullable = false)
-    private Timestamp time;
+    private LocalDateTime time;
 
     @Column
     private Integer availablePlaces;
@@ -31,4 +31,8 @@ public class Session {
 
     @ManyToOne
     private Film film;
+
 }
+
+
+

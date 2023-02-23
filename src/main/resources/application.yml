@@ -1,4 +1,8 @@
 spring:
+  security:
+    user:
+      name: murdered
+      password: murdered
   datasource:
     url: jdbc:postgresql://localhost:5432/cinema
     username: postgres
