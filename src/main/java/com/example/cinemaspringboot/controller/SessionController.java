@@ -33,6 +33,7 @@ public class SessionController {
 
     @PostMapping("/add-session")
     public String saveSession(Session session){
+        System.out.println(session);
         sessionRepository.save(session);
         return "redirect:/sessions";
     }

@@ -7,12 +7,12 @@
 <body>
 <form action="#" th:action="@{/add-session}" th:object="${session}" method="post">
     <input type="datetime-local" th:field="*{time}" id="time">
-    <input type="number" th:field="*{price}" id="price">
-    <input type="number" th:field="*{availablePlaces}" id="available-places">
+    <input type="number" th:field="*{price}" id="price" min="1">
+    <input type="number" th:field="*{availablePlaces}" id="available-places" min="1">
     <select th:field="*{film}" id="film">
         <option th:each="session_film : ${films}" th:value="${session_film.id}" th:text="${session_film.title}">Film</option>
     </select>
-    <button type="submit">Submit</button>
+    <button type="submit">Add session</button>
 </form>
 </body>
 </html>

@@ -19,7 +19,6 @@ public class Session {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    //@DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
     @Column(nullable = false)
     private LocalDateTime time;
 
