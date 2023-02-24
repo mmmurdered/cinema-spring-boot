@@ -1,7 +1,12 @@
 package com.example.cinemaspringboot.database.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 import lombok.*;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
@@ -19,13 +24,14 @@ public class Session {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @NotNull
     private LocalDateTime time;
 
-    @Column
+    @Positive
+    @Range(min = 1, max = 128)
     private Integer availablePlaces;
 
-    @Column(nullable = false)
+    @Positive
     private Integer price;
 
     @ManyToOne
