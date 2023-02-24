@@ -26,8 +26,8 @@ public class Film {
     @Column(nullable = false)
     private Integer duration;
 
-    @Column(nullable = false)
-    private Double imdb_rating;
+    @Column(nullable = false, name = "imdb_rating")
+    private Double imdbRating;
 }
 
 
