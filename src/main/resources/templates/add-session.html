@@ -5,7 +5,7 @@
     <title>Add session</title>
 </head>
 <body>
-<form action="#" th:action="@{/add-session}" th:object="${session}" method="post">
+<form action="#" th:action="@{/add-session}" th:object="${sessionDto}" method="post">
     <input type="datetime-local" th:field="*{time}" id="time">
     <input type="number" th:field="*{price}" id="price" min="1">
     <input type="number" th:field="*{availablePlaces}" id="available-places" min="1">

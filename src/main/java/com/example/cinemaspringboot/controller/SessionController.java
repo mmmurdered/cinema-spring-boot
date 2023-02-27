@@ -3,6 +3,7 @@ package com.example.cinemaspringboot.controller;
 import com.example.cinemaspringboot.database.entity.Session;
 import com.example.cinemaspringboot.database.repository.FilmRepository;
 import com.example.cinemaspringboot.database.repository.SessionRepository;
+import com.example.cinemaspringboot.dto.SessionDto;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,17 +29,17 @@ public class SessionController {
     }
 
     @GetMapping("add-session")
-    public String saveSessionForm(Session session, Model model){
+    public String saveSessionForm(SessionDto sessionDto, Model model){
         model.addAttribute("films", filmRepository.findAll());
         return "add-session";
     }
 
     @PostMapping("/add-session")
-    public String saveSession(@Valid Session session, BindingResult bindingResult){
+    public String saveSession(@Valid SessionDto sessionDto, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "add-session";
         }
-        sessionRepository.save(session);
+        sessionRepository.save(sessionDto.convertToEntity());
         return "redirect:/sessions";
     }
 

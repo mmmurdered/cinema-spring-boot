@@ -18,24 +18,19 @@ public class Film {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "Title is mandatory(1 - 100)")
-    @Size(min = 1, max = 100)
+    @Column
     private String title;
 
-    @NotBlank(message = "Description is mandatory(1 - 2000)")
-    @Size(min = 1, max = 2000)
+    @Column
     private String description;
 
-    @NotBlank(message = "Title is mandatory(1 - 45)")
-    @Size(min = 1, max = 45)
+    @Column
     private String genre;
 
-    @Positive
+    @Column
     private Integer duration;
 
-
-    @Positive
-    @Range(min = 0, max = 10)
+    @Column
     private Double imdbRating;
 }
 

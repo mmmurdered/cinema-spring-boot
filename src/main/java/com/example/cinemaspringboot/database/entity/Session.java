@@ -24,14 +24,13 @@ public class Session {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
+    @Column
     private LocalDateTime time;
 
-    @Positive
-    @Range(min = 1, max = 128)
+    @Column
     private Integer availablePlaces;
 
-    @Positive
+    @Column
     private Integer price;
 
     @ManyToOne
