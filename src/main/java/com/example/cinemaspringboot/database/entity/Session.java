@@ -1,16 +1,11 @@
 package com.example.cinemaspringboot.database.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
-import lombok.*;
-import org.hibernate.validator.constraints.Range;
-import org.springframework.format.annotation.DateTimeFormat;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity

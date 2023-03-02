@@ -11,19 +11,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "cinema_user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, unique = true)
+    @Column
     private String login;
 
-    @Column(nullable = false)
+    @Column
     private String password;
 
-    @Column(nullable = false, unique = true)
+    @Column
     private String email;
 
     @ManyToOne

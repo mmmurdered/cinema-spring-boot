@@ -2,10 +2,6 @@ package com.example.cinemaspringboot.dto;
 
 import com.example.cinemaspringboot.database.entity.Film;
 import com.example.cinemaspringboot.database.entity.Session;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;

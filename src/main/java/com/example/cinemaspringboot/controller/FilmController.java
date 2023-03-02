@@ -1,6 +1,5 @@
 package com.example.cinemaspringboot.controller;
 
-import com.example.cinemaspringboot.database.entity.Film;
 import com.example.cinemaspringboot.database.repository.FilmRepository;
 import com.example.cinemaspringboot.dto.FilmDto;
 import jakarta.validation.Valid;
@@ -18,23 +17,23 @@ public class FilmController {
     private FilmRepository filmRepository;
 
     @GetMapping("/add-film")
-    public String saveFilmForm(FilmDto filmDto){
+    public String saveFilmForm(FilmDto filmDto) {
         return "add-film";
     }
 
     @PostMapping("/add-film")
-    public String saveFilm(@Valid FilmDto filmDto, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            return "add-film";
+    public String saveFilm(@Valid FilmDto filmDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "film/add-film";
         }
         filmRepository.save(filmDto.convertToEntity());
         return "redirect:/films";
     }
 
     @GetMapping("/films")
-    public String getAllFilms(Model model){
+    public String getAllFilms(Model model) {
         model.addAttribute("films", filmRepository.findAll());
-        return "films";
+        return "film/films";
     }
 
 

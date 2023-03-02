@@ -1,6 +1,5 @@
 package com.example.cinemaspringboot.controller;
 
-import com.example.cinemaspringboot.database.entity.Session;
 import com.example.cinemaspringboot.database.repository.FilmRepository;
 import com.example.cinemaspringboot.database.repository.SessionRepository;
 import com.example.cinemaspringboot.dto.SessionDto;
@@ -11,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class SessionController {
@@ -23,21 +21,21 @@ public class SessionController {
     private FilmRepository filmRepository;
 
     @GetMapping("/sessions")
-    public String getAllSessions(Model model){
+    public String getAllSessions(Model model) {
         model.addAttribute("cinema_sessions", sessionRepository.findAll());
-        return "sessions";
+        return "session/sessions";
     }
 
-    @GetMapping("add-session")
-    public String saveSessionForm(SessionDto sessionDto, Model model){
+    @GetMapping("/add-session")
+    public String saveSessionForm(SessionDto sessionDto, Model model) {
         model.addAttribute("films", filmRepository.findAll());
-        return "add-session";
+        return "session/add-session";
     }
 
     @PostMapping("/add-session")
-    public String saveSession(@Valid SessionDto sessionDto, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            return "add-session";
+    public String saveSession(@Valid SessionDto sessionDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "session/add-session";
         }
         sessionRepository.save(sessionDto.convertToEntity());
         return "redirect:/sessions";

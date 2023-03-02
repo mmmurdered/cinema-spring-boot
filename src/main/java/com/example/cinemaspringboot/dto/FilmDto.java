@@ -1,9 +1,6 @@
 package com.example.cinemaspringboot.dto;
 
 import com.example.cinemaspringboot.database.entity.Film;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
@@ -32,7 +29,7 @@ public class FilmDto {
     @Range(min = 0, max = 10)
     private Double imdbRating;
 
-    public Film convertToEntity(){
-        return new Film(null , title, description, genre, duration, imdbRating);
+    public Film convertToEntity() {
+        return new Film(null, title, description, genre, duration, imdbRating);
     }
 }
