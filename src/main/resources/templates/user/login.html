@@ -6,10 +6,14 @@
 </head>
 <body>
 <form th:action="@{/login}" method="post">
-  <label for="login">Login</label>
-  <input type="text" id="login" name="username" minlength="1" maxlength="32">
-  <label for="password">Password</label>
-  <input type="password" id="password" name="password" minlength="1" maxlength="32">
+  <div class="form-group">
+    <label for="login">Login</label>
+    <input type="text" id="login" name="username">
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password">
+  </div>
 
   <button type="submit">Sign in</button>
 </form>

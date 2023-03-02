@@ -2,6 +2,7 @@ package com.example.cinemaspringboot.dto;
 
 import com.example.cinemaspringboot.database.entity.Film;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -22,11 +23,13 @@ public class FilmDto {
     @Size(min = 1, max = 45)
     private String genre;
 
+    @NotNull
     @Positive
     private Integer duration;
 
+    @NotNull
     @Positive
-    @Range(min = 0, max = 10)
+    @Range(min = 1, max = 10)
     private Double imdbRating;
 
     public Film convertToEntity() {

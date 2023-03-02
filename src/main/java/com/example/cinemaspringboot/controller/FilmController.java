@@ -18,7 +18,7 @@ public class FilmController {
 
     @GetMapping("/add-film")
     public String saveFilmForm(FilmDto filmDto) {
-        return "add-film";
+        return "film/add-film";
     }
 
     @PostMapping("/add-film")
