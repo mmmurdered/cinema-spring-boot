@@ -25,8 +25,4 @@ public class UserDto {
     @Email
     @NotBlank(message = "Email is mandatory")
     private String email;
-
-    public User convertToEntity(){
-        return new User(null, login, password, email, null);
-    }
 }

@@ -1,5 +1,6 @@
 package com.example.cinemaspringboot.controller;
 
+import com.example.cinemaspringboot.database.entity.Film;
 import com.example.cinemaspringboot.database.repository.FilmRepository;
 import com.example.cinemaspringboot.dto.FilmDto;
 import jakarta.validation.Valid;
@@ -26,7 +27,13 @@ public class FilmController {
         if (bindingResult.hasErrors()) {
             return "film/add-film";
         }
-        filmRepository.save(filmDto.convertToEntity());
+        filmRepository.save(Film.builder()
+                .title(filmDto.getTitle())
+                .description(filmDto.getDescription())
+                .genre(filmDto.getGenre())
+                .duration(filmDto.getDuration())
+                .imdbRating(filmDto.getImdbRating())
+                .build());
         return "redirect:/films";
     }
 

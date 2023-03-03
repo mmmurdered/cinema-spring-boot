@@ -1,5 +1,6 @@
 package com.example.cinemaspringboot.controller;
 
+import com.example.cinemaspringboot.database.entity.Session;
 import com.example.cinemaspringboot.database.repository.FilmRepository;
 import com.example.cinemaspringboot.database.repository.SessionRepository;
 import com.example.cinemaspringboot.dto.SessionDto;
@@ -37,7 +38,12 @@ public class SessionController {
         if (bindingResult.hasErrors()) {
             return "session/add-session";
         }
-        sessionRepository.save(sessionDto.convertToEntity());
+        sessionRepository.save(Session.builder()
+                .time(sessionDto.getTime())
+                .film(sessionDto.getFilm())
+                .availablePlaces(sessionDto.getAvailablePlaces())
+                .price(sessionDto.getPrice())
+                .build());
         return "redirect:/sessions";
     }
 

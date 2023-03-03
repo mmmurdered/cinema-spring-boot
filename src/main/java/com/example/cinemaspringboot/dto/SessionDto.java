@@ -19,13 +19,10 @@ public class SessionDto {
     @Range(min = 1, max = 128)
     private Integer availablePlaces;
 
+    @NotNull
     @Positive
     private Integer price;
 
     @NotNull
     private Film film;
-
-    public Session convertToEntity(){
-        return new Session(null, time, availablePlaces, price, film);
-    }
 }

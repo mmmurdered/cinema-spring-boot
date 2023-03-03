@@ -31,8 +31,4 @@ public class FilmDto {
     @Positive
     @Range(min = 1, max = 10)
     private Double imdbRating;
-
-    public Film convertToEntity() {
-        return new Film(null, title, description, genre, duration, imdbRating);
-    }
 }
