@@ -13,6 +13,10 @@ import java.time.LocalDateTime;
 public class SessionDto {
 
     @NotNull
+    @Positive
+    private Integer id;
+
+    @NotNull
     private LocalDateTime time;
 
     @Positive

@@ -24,8 +24,8 @@
         <td th:text="${film.duration}"></td>
         <td th:text="${film.imdbRating}"></td>
         <td sec:authorize="hasAuthority('ADMIN')">
-            <a th:text="Update" th:href="@{/update/{id}(id = ${film.id})}"/>
-            <a th:text="Delete" th:href="@{/delete/{id}(id = ${film.id})}"/>
+            <a th:text="Update" th:href="@{/film/update/{id}(id = ${film.id})}"/>
+            <a th:text="Delete" th:href="@{/film/delete/{id}(id = ${film.id})}"/>
         </td>
     </tr>
     </tbody>

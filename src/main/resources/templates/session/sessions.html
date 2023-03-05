@@ -20,8 +20,8 @@
         <td th:text="${cinema_session.time}"></td>
         <td th:text="${cinema_session.film.title}"></td>
         <td sec:authorize="hasAuthority('ADMIN')">
-            <a th:text="Update" th:href="@{/update/{id}(id = ${cinema_session.id})}"/>
-            <a th:text="Delete" th:href="@{/delete/{id}(id = ${cinema_session.id})}"/>
+            <a th:text="Update" th:href="@{/session/update/{id}(id = ${cinema_session.id})}"/>
+            <a th:text="Delete" th:href="@{/session/delete/{id}(id = ${cinema_session.id})}"/>
         </td>
     </tr>
     </tbody>

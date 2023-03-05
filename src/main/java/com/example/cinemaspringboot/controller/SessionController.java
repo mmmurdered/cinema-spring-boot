@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/session")
 public class SessionController {
 
     @Autowired
@@ -48,4 +48,28 @@ public class SessionController {
     }
 
 
+    @GetMapping("/update/{id}")
+    public String updateSession(@PathVariable("id") int id, Model model){
+        model.addAttribute("films", filmRepository.findAll());
+        Session session = sessionRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Invalid session id"));
+        model.addAttribute("sessionDto", session);
+        return "session/edit-session";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateSession(@PathVariable("id") int id, @Valid SessionDto sessionDto, BindingResult bindingResult, Model model){
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("films", filmRepository.findAll());
+            return "session/edit-session";
+        }
+        sessionRepository.save(Session.builder()
+                .id(id)
+                .time(sessionDto.getTime())
+                .price(sessionDto.getPrice())
+                .film(sessionDto.getFilm())
+                .availablePlaces(sessionDto.getAvailablePlaces())
+                .build());
+        return "redirect:/sessions";
+    }
 }

@@ -11,6 +11,10 @@ import org.hibernate.validator.constraints.Range;
 @Data
 public class FilmDto {
 
+    @NotNull
+    @Positive
+    private Integer id;
+
     @NotBlank(message = "Title is mandatory(1 - 100)")
     @Size(min = 1, max = 100)
     private String title;
@@ -29,6 +33,6 @@ public class FilmDto {
 
     @NotNull
     @Positive
-    @Range(min = 1, max = 10)
+    @Range(min = 1, max = 3)
     private Double imdbRating;
 }

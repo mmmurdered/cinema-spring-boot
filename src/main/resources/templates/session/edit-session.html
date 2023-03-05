@@ -5,20 +5,20 @@
   <title>Add session</title>
 </head>
 <body>
-<form action="#" th:action="@{/update/{id}(id = ${cinema_session.id})}" th:object="${sessionDto}" method="post">
+<form action="#" th:action="@{/session/update/{id}(id = ${sessionDto.id})}" th:object="${sessionDto}" method="post">
   <div class="form-group">
     <label for="time">Time</label>
-    <input type="datetime-local" th:field="*{time}" id="time">
+    <input type="datetime-local" th:field="*{time}" th:value="${sessionDto.time}" id="time">
     <div class="alert alert-warning" th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></div>
   </div>
   <div class="form-group">
     <label for="price">Price</label>
-    <input type="number" th:field="*{price}" id="price">
+    <input type="number" th:field="*{price}" th:value="${sessionDto.price}" id="price">
     <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
   </div>
   <div class="form-group">
     <label for="availablePlaces">Available places</label>
-    <input type="number" th:field="*{availablePlaces}" id="availablePlaces">
+    <input type="number" th:field="*{availablePlaces}" th:value="${sessionDto.availablePlaces}" id="availablePlaces">
     <div class="alert alert-warning" th:if="${#fields.hasErrors('availablePlaces')}" th:errors="*{availablePlaces}"></div>
   </div>
   <div class="form-group">
