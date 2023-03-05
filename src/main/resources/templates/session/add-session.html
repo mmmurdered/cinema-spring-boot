@@ -6,12 +6,28 @@
 </head>
 <body>
 <form action="#" th:action="@{/add-session}" th:object="${sessionDto}" method="post">
-    <input type="datetime-local" th:field="*{time}" id="time">
-    <input type="number" th:field="*{price}" id="price" min="1">
-    <input type="number" th:field="*{availablePlaces}" id="available-places" min="1">
-    <select th:field="*{film}" id="film">
-        <option th:each="session_film : ${films}" th:value="${session_film.id}" th:text="${session_film.title}">Film</option>
-    </select>
+    <div class="form-group">
+        <label for="time">Time</label>
+        <input type="datetime-local" th:field="*{time}" id="time">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></div>
+    </div>
+    <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" th:field="*{price}" id="price">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+    </div>
+    <div class="form-group">
+        <label for="availablePlaces">Available places</label>
+        <input type="number" th:field="*{availablePlaces}" id="availablePlaces">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('availablePlaces')}" th:errors="*{availablePlaces}"></div>
+    </div>
+    <div class="form-group">
+        <label for="film">Film</label>
+        <select th:field="*{film}" id="film">
+            <option th:each="session_film : ${films}" th:value="${session_film.id}" th:text="${session_film.title}">Film</option>
+        </select>
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('film')}" th:errors="*{film}"></div>
+    </div>
     <button type="submit">Add session</button>
 </form>
 </body>
