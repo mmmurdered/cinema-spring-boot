@@ -39,6 +39,8 @@ public class SecurityConfiguration {
                     .logout()
                     .logoutUrl("/logout")
                     .logoutSuccessUrl("/login")
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JESSIONID")
                     .permitAll()
                 .and()
                     .authorizeHttpRequests()
