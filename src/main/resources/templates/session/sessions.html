@@ -24,6 +24,9 @@
             <a th:text="Update" th:href="@{/session/update/{id}(id = ${cinema_session.id})}"/>
             <a th:text="Delete" th:href="@{/session/delete/{id}(id = ${cinema_session.id})}"/>
         </td>
+        <td sec:authorize="hasAuthority('USER')">
+            <a th:text="Buy" th:href="@{/ticket/buy/{id}(id = ${cinema_session.id})}"/>
+        </td>
     </tr>
     </tbody>
 </table>

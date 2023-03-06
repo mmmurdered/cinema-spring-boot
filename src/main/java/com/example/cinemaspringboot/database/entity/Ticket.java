@@ -24,5 +24,9 @@ public class Ticket {
     private Session session;
 
     @ManyToOne
+    @JoinColumn(name = "session_film_id")
     private Film film;
+
+    @OneToOne
+    private Seat seat;
 }

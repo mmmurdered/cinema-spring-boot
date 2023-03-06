@@ -1,53 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <title>Выбор места в кинотеатре</title>
+    <title>Choose available seats</title>
 </head>
 <body>
-<h1>Выберите место</h1>
-<div>
-    <h3>Схема зала</h3>
+<form action="#" th:action="@{/ticket/buy/{id}(id = ${cinemaSession.id})}" th:object="${cinemaSession}" method="post" >
     <table>
         <tbody>
-        <tr>
-            <td></td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-        </tr>
-        <tr>
-            <td>Ряд 1</td>
-            <td><input type="checkbox" name="seat" value="1A"></td>
-            <td><input type="checkbox" name="seat" value="1B"></td>
-            <td><input type="checkbox" name="seat" value="1C"></td>
-            <td><input type="checkbox" name="seat" value="1D"></td>
-            <td><input type="checkbox" name="seat" value="1E"></td>
-            <td><input type="checkbox" name="seat" value="1F"></td>
-        </tr>
-        <tr>
-            <td>Ряд 2</td>
-            <td><input type="checkbox" name="seat" value="2A"></td>
-            <td><input type="checkbox" name="seat" value="2B"></td>
-            <td><input type="checkbox" name="seat" value="2C"></td>
-            <td><input type="checkbox" name="seat" value="2D"></td>
-            <td><input type="checkbox" name="seat" value="2E"></td>
-            <td><input type="checkbox" name="seat" value="2F"></td>
-        </tr>
-        <tr>
-            <td>Ряд 3</td>
-            <td><input type="checkbox" name="seat" value="3A"></td>
-            <td><input type="checkbox" name="seat" value="3B"></td>
-            <td><input type="checkbox" name="seat" value="3C"></td>
-            <td><input type="checkbox" name="seat" value="3D"></td>
-            <td><input type="checkbox" name="seat" value="3E"></td>
-            <td><input type="checkbox" name="seat" value="3F"></td>
+        <tr th:each="row : ${#numbers.sequence(1, 8)}">
+            <td th:each="col : ${#numbers.sequence(1, 8)}">
+                <input type="checkbox" th:id="seat" th:name="seat" th:value="${row} + '-' + ${col}"
+                       th:disabled="${seats.contains(row, col)}">
+            </td>
         </tr>
         </tbody>
     </table>
-</div>
-<button type="submit">Выбрать место</button>
+    <button type="submit">Confirm</button>
+</form>
 </body>
 </html>
