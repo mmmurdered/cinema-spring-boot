@@ -6,6 +6,7 @@ import com.example.cinemaspringboot.database.repository.SessionRepository;
 import com.example.cinemaspringboot.dto.SessionDto;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -46,7 +47,6 @@ public class SessionController {
                 .build());
         return "redirect:/sessions";
     }
-
 
     @GetMapping("/update/{id}")
     public String updateSession(@PathVariable("id") int id, Model model){

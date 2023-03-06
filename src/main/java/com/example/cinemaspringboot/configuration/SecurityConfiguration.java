@@ -27,17 +27,23 @@ public class SecurityConfiguration {
                     .permitAll()
                 .and()
                     .authorizeHttpRequests()
-                    .anyRequest()
-                    .authenticated()
+                    .requestMatchers("/film/update/**", "/film/delete/**, " +
+                            "/session/update/**, /session/delete/**")
+                    .hasAuthority("ADMIN")
                 .and()
                     .formLogin()
                     .loginPage("/login")
-                    .defaultSuccessUrl("/sessions")
+                    .defaultSuccessUrl("/session/sessions", true)
                     .permitAll()
                 .and()
                     .logout()
                     .logoutUrl("/logout")
-                    .permitAll();
+                    .logoutSuccessUrl("/login")
+                    .permitAll()
+                .and()
+                    .authorizeHttpRequests()
+                    .anyRequest()
+                    .authenticated();
         return http.build();
     }
 
