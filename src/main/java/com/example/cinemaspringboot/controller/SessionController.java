@@ -58,7 +58,8 @@ public class SessionController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateSession(@PathVariable("id") int id, @Valid SessionDto sessionDto, BindingResult bindingResult, Model model){
+    public String updateSession(@PathVariable("id") int id, @Valid SessionDto sessionDto, BindingResult bindingResult,
+                                Model model){
         if (bindingResult.hasErrors()) {
             model.addAttribute("films", filmRepository.findAll());
             return "session/edit-session";
@@ -70,6 +71,14 @@ public class SessionController {
                 .film(sessionDto.getFilm())
                 .availablePlaces(sessionDto.getAvailablePlaces())
                 .build());
+        return "redirect:/sessions";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteSession(@PathVariable("id") int id){
+        Session session = sessionRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Invalid session id"));
+        sessionRepository.delete(session);
         return "redirect:/sessions";
     }
 }

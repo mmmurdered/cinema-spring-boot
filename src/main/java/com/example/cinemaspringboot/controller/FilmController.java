@@ -1,6 +1,7 @@
 package com.example.cinemaspringboot.controller;
 
 import com.example.cinemaspringboot.database.entity.Film;
+import com.example.cinemaspringboot.database.entity.Session;
 import com.example.cinemaspringboot.database.repository.FilmRepository;
 import com.example.cinemaspringboot.dto.FilmDto;
 import jakarta.validation.Valid;
@@ -56,7 +57,6 @@ public class FilmController {
     @PostMapping("/update/{id}")
     public String updateFilm(@PathVariable("id") int id, @Valid FilmDto filmDto, BindingResult bindingResult, Model model){
         if (bindingResult.hasErrors()) {
-            //filmDto.setId(id);
             model.addAttribute("film", filmDto);
             return "film/edit-film";
         }
@@ -71,6 +71,11 @@ public class FilmController {
         return "redirect:/films";
     }
 
-    /*Film film = filmRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid film id"));
-        filmRepository.delete(film);*/
+    @GetMapping("/delete/{id}")
+    public String deleteFilm(@PathVariable("id") int id){
+        Film film = filmRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Invalid film id"));
+        filmRepository.delete(film);
+        return "redirect:/films";
+    }
 }
