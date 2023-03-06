@@ -42,7 +42,8 @@ public class TicketController {
 
     @GetMapping("/buy/{id}")
     public String buyTicket(@PathVariable("id") int id, Model model) {
-        model.addAttribute("cinemaSession" ,sessionRepository.findById(id).get());
+        model.addAttribute("cinemaSession" ,sessionRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Illegal session id")));
         List<Ticket> tickets = ticketRepository.findAllBySession(sessionRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("Illegal session id")));
         List<Seat> seats = new ArrayList<>();
