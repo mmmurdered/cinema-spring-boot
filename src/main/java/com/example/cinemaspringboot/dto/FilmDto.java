@@ -1,6 +1,5 @@
 package com.example.cinemaspringboot.dto;
 
-import com.example.cinemaspringboot.database.entity.Film;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

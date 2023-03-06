@@ -1,7 +1,6 @@
 package com.example.cinemaspringboot.controller;
 
 import com.example.cinemaspringboot.database.entity.Film;
-import com.example.cinemaspringboot.database.entity.Session;
 import com.example.cinemaspringboot.database.repository.FilmRepository;
 import com.example.cinemaspringboot.dto.FilmDto;
 import jakarta.validation.Valid;

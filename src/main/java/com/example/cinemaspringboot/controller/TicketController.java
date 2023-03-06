@@ -9,10 +9,6 @@ import com.example.cinemaspringboot.database.repository.SessionRepository;
 import com.example.cinemaspringboot.database.repository.TicketRepository;
 import com.example.cinemaspringboot.database.repository.UserRepository;
 import com.example.cinemaspringboot.wrapper.SeatListWrapper;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -20,9 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/ticket")
