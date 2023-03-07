@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Taken seats</title>
+</head>
+<body>
+<table>
+  <tbody>
+  <tr th:each="row : ${#numbers.sequence(1, 8)}">
+    <td th:each="col : ${#numbers.sequence(1, 8)}">
+      <input type="checkbox" th:id="seat" th:name="seat" th:value="${row} + '-' + ${col}"
+             th:disabled="${seats.contains(row, col)}">
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

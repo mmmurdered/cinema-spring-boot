@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Controller
@@ -47,7 +48,8 @@ public class TicketController {
     }
 
     @PostMapping("/buy/{id}")
-    public String buyTicket(@PathVariable("id") int id, @RequestParam("seat") List<String> values, Authentication authentication) {
+    public String buyTicket(@PathVariable("id") int id, @RequestParam("seat") List<String> values,
+                            Authentication authentication) {
         Session session = sessionRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("Illegal session id"));
         User user = userRepository.findUserByLogin(authentication.getName()).orElseThrow(
@@ -71,5 +73,29 @@ public class TicketController {
                     .build());
         });
         return "redirect:/session/sessions";
+    }
+
+    @GetMapping("/seats/{id}")
+    public String showSeats(@PathVariable("id") int id, Model model, Authentication authentication) {
+        Session session = sessionRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Illegal session id"));
+        User user = userRepository.findUserByLogin(authentication.getName()).orElseThrow(
+                () -> new IllegalArgumentException("Invalid user id"));
+        List<Ticket> tickets = ticketRepository.findAllBySessionAndUser(session, user);
+        List<Seat> seats = new ArrayList<>();
+        tickets.forEach(t -> seats.add(t.getSeat()));
+        model.addAttribute("seats", new SeatListWrapper(seats));
+        return "ticket/show-seats";
+    }
+
+    @GetMapping("/tickets")
+    public String showTicketsToUser(Model model, Authentication authentication) {
+        List<Ticket> tickets = ticketRepository.findAllByUser(
+                userRepository.findUserByLogin(authentication.getName()).orElseThrow(
+                        () -> new IllegalArgumentException("Invalid username")
+                ));
+
+        model.addAttribute("tickets", new HashSet<>(tickets));
+        return "ticket/tickets";
     }
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Sessions</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Session time</th>
+        <th>Session film</th>
+        <th>Your seats</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ticket : ${tickets}">
+        <td th:text="${ticket.session.time}"></td>
+        <td th:text="${ticket.session.film.title}"></td>
+        <td><a th:text="'Show seats'" th:href="@{/ticket/seats/{id}(id = ${ticket.session.id})}"></a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
