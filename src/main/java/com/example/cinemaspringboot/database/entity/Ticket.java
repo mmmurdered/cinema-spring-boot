@@ -32,7 +32,6 @@ public class Ticket {
     @OneToOne
     private Seat seat;
 
-
     //TODO REFACTORING
     @Override
     public boolean equals(Object o) {

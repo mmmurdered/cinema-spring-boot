@@ -2,33 +2,63 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <meta charset="UTF-8">
-    <title>Sessions</title>
+    <title>Sessions schedule</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
 </head>
 <body>
-<a th:href="@{/logout}">Logout</a>
-<table>
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Time</th>
-        <th>Film name</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="cinema_session : ${cinema_sessions}">
-        <td th:text="${cinema_session.id}"></td>
-        <td th:text="${cinema_session.time}"></td>
-        <td th:text="${cinema_session.film.title}"></td>
-        <td sec:authorize="hasAuthority('ADMIN')">
-            <a th:text="Update" th:href="@{/session/update/{id}(id = ${cinema_session.id})}"/>
-            <a th:text="Delete" th:href="@{/session/delete/{id}(id = ${cinema_session.id})}"/>
-        </td>
-        <td sec:authorize="hasAuthority('USER')">
-            <a th:text="Buy" th:href="@{/ticket/buy/{id}(id = ${cinema_session.id})}"/>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<header class="bg-dark py-3">
+    <div class="container">
+        <h1 class="text-white">Sessions schedule</h1>
+    </div>
+</header>
+<main class="container py-4">
+    <div class="row">
+        <div class="col-md-3">
+            <h2>Filter</h2>
+            <ul class="list-group">
+                <li class="list-group-item active" aria-current="true">Все фильмы</li>
+                <li class="list-group-item">Мстители: Финал</li>
+                <li class="list-group-item">Джентльмены</li>
+                <li class="list-group-item">Девушка, которая застряла в паутине</li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <h2>Sessions</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Price</th>
+                    <th sec:authorize="hasAuthority('USER')" scope="col">Buy ticket</th>
+                    <th sec:authorize="hasAuthority('ADMIN')" scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="cinema_session : ${cinema_sessions}">
+                    <td th:text="${cinema_session.film.title}"></td>
+                    <td th:text="${cinema_session.time}"></td>
+                    <td th:text="${cinema_session.price}"></td>
+                    <td sec:authorize="hasAuthority('ADMIN')">
+                        <a th:text="Update" th:href="@{/session/update/{id}(id = ${cinema_session.id})}"/>
+                        <a th:text="Delete" th:href="@{/session/delete/{id}(id = ${cinema_session.id})}"/>
+                    </td>
+                    <td sec:authorize="hasAuthority('USER')">
+                        <a th:text="Buy" th:href="@{/ticket/buy/{id}(id = ${cinema_session.id})}"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<footer class="bg-dark py-3 text-white">
+    <div class="container">
+        <p class="text-center">© 2023 Cinema.</p>
+    </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
