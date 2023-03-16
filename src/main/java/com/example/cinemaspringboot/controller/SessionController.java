@@ -24,19 +24,19 @@ public class SessionController {
     @Autowired
     private FilmRepository filmRepository;
 
-    @GetMapping("/sessions")
+    @GetMapping("/all")
     public String getAllSessions(Model model) {
         model.addAttribute("cinema_sessions", sessionRepository.findAll());
         return "session/sessions";
     }
 
-    @GetMapping("/add-session")
+    @GetMapping("/add")
     public String saveSessionForm(SessionDto sessionDto, Model model) {
         model.addAttribute("films", filmRepository.findAll());
         return "session/add-session";
     }
 
-    @PostMapping("/add-session")
+    @PostMapping("/add")
     public String saveSession(@Valid SessionDto sessionDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "session/add-session";

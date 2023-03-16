@@ -40,7 +40,7 @@ public class FilmController {
         return "redirect:/films";
     }
 
-    @GetMapping("/films")
+    @GetMapping("/all")
     public String getAllFilms(Model model) {
         model.addAttribute("films", filmRepository.findAll());
         return "film/films";
