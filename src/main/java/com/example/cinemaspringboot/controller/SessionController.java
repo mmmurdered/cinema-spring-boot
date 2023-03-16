@@ -18,11 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/session")
 public class SessionController {
 
-    @Autowired
-    private SessionRepository sessionRepository;
+    private final SessionRepository sessionRepository;
 
-    @Autowired
-    private FilmRepository filmRepository;
+    private final FilmRepository filmRepository;
+
+    public SessionController(SessionRepository sessionRepository, FilmRepository filmRepository) {
+        this.sessionRepository = sessionRepository;
+        this.filmRepository = filmRepository;
+    }
 
     @GetMapping("/all")
     public String getAllSessions(Model model) {

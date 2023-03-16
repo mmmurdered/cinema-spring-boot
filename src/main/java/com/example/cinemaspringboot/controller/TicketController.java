@@ -23,21 +23,25 @@ import java.util.List;
 @RequestMapping("/ticket")
 public class TicketController {
 
-    @Autowired
-    private SessionRepository sessionRepository;
+    private final SessionRepository sessionRepository;
 
-    @Autowired
-    private SeatRepository seatRepository;
+    private final SeatRepository seatRepository;
 
-    @Autowired
-    private TicketRepository ticketRepository;
+    private final TicketRepository ticketRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public TicketController(SessionRepository sessionRepository, SeatRepository seatRepository,
+                            TicketRepository ticketRepository, UserRepository userRepository) {
+        this.sessionRepository = sessionRepository;
+        this.seatRepository = seatRepository;
+        this.ticketRepository = ticketRepository;
+        this.userRepository = userRepository;
+    }
 
     @GetMapping("/buy/{id}")
     public String buyTicket(@PathVariable("id") int id, Model model) {
-        model.addAttribute("cinemaSession" ,sessionRepository.findById(id).orElseThrow(
+        model.addAttribute("cinemaSession", sessionRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("Illegal session id")));
         List<Ticket> tickets = ticketRepository.findAllBySession(sessionRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("Illegal session id")));
@@ -64,14 +68,12 @@ public class TicketController {
             seatRepository.save(seat);
             allSeats.add(seat);
         });
-        allSeats.forEach(seat -> {
-            ticketRepository.save(Ticket.builder()
-                    .film(session.getFilm())
-                    .seat(seat)
-                    .user(user)
-                    .session(session)
-                    .build());
-        });
+        allSeats.forEach(seat -> ticketRepository.save(Ticket.builder()
+                .film(session.getFilm())
+                .seat(seat)
+                .user(user)
+                .session(session)
+                .build()));
         return "redirect:/session/sessions";
     }
 

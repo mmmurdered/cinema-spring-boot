@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/film")
 public class FilmController {
 
-    @Autowired
-    private FilmRepository filmRepository;
+    private final FilmRepository filmRepository;
+
+    public FilmController(FilmRepository filmRepository) {
+        this.filmRepository = filmRepository;
+    }
 
     @GetMapping("/add")
     public String saveFilmForm(FilmDto filmDto) {
