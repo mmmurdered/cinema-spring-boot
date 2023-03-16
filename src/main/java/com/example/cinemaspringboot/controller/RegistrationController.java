@@ -41,7 +41,7 @@ public class RegistrationController {
                 .password(passwordEncoder.encode(userDto.getPassword()))
                 .role(new UserRole(1, "User"))
                 .build());
-        return "redirect:/sessions";
+        return "redirect:/session/all";
     }
 
 }

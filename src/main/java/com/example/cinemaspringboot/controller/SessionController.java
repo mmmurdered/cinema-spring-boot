@@ -50,7 +50,7 @@ public class SessionController {
                 .availablePlaces(sessionDto.getAvailablePlaces())
                 .price(sessionDto.getPrice())
                 .build());
-        return "redirect:/sessions";
+        return "redirect:/all";
     }
 
     @GetMapping("/update/{id}")
@@ -76,7 +76,7 @@ public class SessionController {
                 .film(sessionDto.getFilm())
                 .availablePlaces(sessionDto.getAvailablePlaces())
                 .build());
-        return "redirect:/sessions";
+        return "redirect:/all";
     }
 
     @GetMapping("/delete/{id}")
@@ -84,6 +84,6 @@ public class SessionController {
         Session session = sessionRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("Invalid session id"));
         sessionRepository.delete(session);
-        return "redirect:/sessions";
+        return "redirect:/all";
     }
 }

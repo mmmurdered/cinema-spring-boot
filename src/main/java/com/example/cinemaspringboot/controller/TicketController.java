@@ -74,7 +74,7 @@ public class TicketController {
                 .user(user)
                 .session(session)
                 .build()));
-        return "redirect:/session/sessions";
+        return "redirect:/session/all";
     }
 
     @GetMapping("/seats/{id}")
