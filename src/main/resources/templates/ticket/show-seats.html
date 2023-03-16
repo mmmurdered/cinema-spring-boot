@@ -6,15 +6,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
 </head>
 <body>
-<table>
-  <tbody>
-  <tr th:each="row : ${#numbers.sequence(1, 8)}">
-    <td th:each="col : ${#numbers.sequence(1, 8)}">
-      <input type="checkbox" th:id="seat" th:name="seat" th:value="${row} + '-' + ${col}"
-             th:disabled="${seats.contains(row, col)}">
-    </td>
-  </tr>
-  </tbody>
-</table>
+<div class="d-flex align-items-center justify-content-center vh-100">
+    <table>
+        <tbody>
+        <tr th:each="row : ${#numbers.sequence(1, 8)}">
+            <td th:each="col : ${#numbers.sequence(1, 8)}">
+                <input type="checkbox" th:id="seat" th:name="seat" th:value="${row} + '-' + ${col}"
+                       th:disabled="${seats.contains(row, col)}">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

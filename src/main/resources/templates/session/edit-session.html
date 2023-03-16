@@ -1,34 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Add session</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+    <title>Add session</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
 </head>
 <body>
-<form action="#" th:action="@{/session/update/{id}(id = ${sessionDto.id})}" th:object="${sessionDto}" method="post">
-  <div class="form-group">
-    <label for="time">Time</label>
-    <input type="datetime-local" th:field="*{time}" th:value="${sessionDto.time}" id="time">
-    <div class="alert alert-warning" th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></div>
-  </div>
-  <div class="form-group">
-    <label for="price">Price</label>
-    <input type="number" th:field="*{price}" th:value="${sessionDto.price}" id="price">
-    <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
-  </div>
-  <div class="form-group">
-    <label for="availablePlaces">Available places</label>
-    <input type="number" th:field="*{availablePlaces}" th:value="${sessionDto.availablePlaces}" id="availablePlaces">
-    <div class="alert alert-warning" th:if="${#fields.hasErrors('availablePlaces')}" th:errors="*{availablePlaces}"></div>
-  </div>
-  <div class="form-group">
-    <label for="film">Film</label>
-    <select th:field="*{film}" id="film">
-      <option th:each="session_film : ${films}" th:value="${session_film.id}" th:text="${session_film.title}">Film</option>
-    </select>
-    <div class="alert alert-warning" th:if="${#fields.hasErrors('film')}" th:errors="*{film}"></div>
-  </div>
-  <button type="submit">Edit session</button>
-</form>
+<div class="d-flex align-items-center justify-content-center vh-100">
+    <form action="#" th:action="@{/session/update/{id}(id = ${sessionDto.id})}" th:object="${sessionDto}" method="post">
+        <div class="form-group">
+            <input class="form-control" type="datetime-local" th:field="*{time}" th:value="${sessionDto.time}"
+                   id="time">
+            <label class="form-label" for="time">Time</label>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></div>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="number" th:field="*{price}" th:value="${sessionDto.price}" id="price">
+            <label class="form-label" for="price">Price</label>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="number" th:field="*{availablePlaces}"
+                   th:value="${sessionDto.availablePlaces}" id="availablePlaces">
+            <label class="form-label" for="availablePlaces">Available places</label>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('availablePlaces')}"
+                 th:errors="*{availablePlaces}"></div>
+        </div>
+        <div class="form-group">
+            <label for="film">Film</label>
+            <select th:field="*{film}" id="film">
+                <option th:each="session_film : ${films}" th:value="${session_film.id}" th:text="${session_film.title}">
+                    Film
+                </option>
+            </select>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('film')}" th:errors="*{film}"></div>
+        </div>
+        <button class="btn btn-primary btn-block mb-4" type="submit">Edit session</button>
+    </form>
+</div>
 </body>
 </html>
