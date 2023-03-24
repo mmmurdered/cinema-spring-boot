@@ -4,7 +4,6 @@ import com.example.cinemaspringboot.database.entity.Film;
 import com.example.cinemaspringboot.database.repository.FilmRepository;
 import com.example.cinemaspringboot.dto.FilmDto;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -51,13 +50,15 @@ public class FilmController {
 
     @GetMapping("/update/{id}")
     public String updateFilm(@PathVariable("id") int id, Model model){
-        Film film = filmRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid film id"));
+        Film film = filmRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Invalid film id"));
         model.addAttribute("filmDto", film);
         return "film/edit-film";
     }
 
     @PostMapping("/update/{id}")
-    public String updateFilm(@PathVariable("id") int id, @Valid FilmDto filmDto, BindingResult bindingResult, Model model){
+    public String updateFilm(@PathVariable("id") int id, @Valid FilmDto filmDto,
+                             BindingResult bindingResult, Model model){
         if (bindingResult.hasErrors()) {
             model.addAttribute("film", filmDto);
             return "film/edit-film";
@@ -79,5 +80,13 @@ public class FilmController {
                 () -> new IllegalArgumentException("Invalid film id"));
         filmRepository.delete(film);
         return "redirect:/films";
+    }
+
+    @GetMapping("/{id}")
+    public String getFilm(@PathVariable("id") int id, Model model){
+        Film film = filmRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Invalid film id"));
+        model.addAttribute("film", film);
+        return "film/film-about";
     }
 }

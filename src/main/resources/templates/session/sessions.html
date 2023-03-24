@@ -10,7 +10,9 @@
 <body>
 <header class="bg-dark py-3">
     <div class="container">
-        <h1 class="text-white">Sessions schedule</h1>
+        <h1 class="text-white">Schedule</h1>
+        <a class="text-white" th:href="@{/film/all}">Films</a>
+        <a sec:authorize="hasAuthority('USER')" class="text-white" th:href="@{/ticket/user-tickets}">Your tickets</a>
     </div>
 </header>
 <main class="container py-4">
@@ -38,7 +40,10 @@
                 </thead>
                 <tbody>
                 <tr th:each="cinema_session : ${cinema_sessions}">
-                    <td th:text="${cinema_session.film.title}"></td>
+                    <td>
+                        <a th:text="${cinema_session.film.title}"
+                           th:href="@{/film/{id}(id = ${cinema_session.film.id})}"></a>
+                    </td>
                     <td th:text="${cinema_session.time}"></td>
                     <td th:text="${cinema_session.price}"></td>
                     <td sec:authorize="hasAuthority('ADMIN')">

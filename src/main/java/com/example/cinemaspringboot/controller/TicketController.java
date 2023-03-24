@@ -83,6 +83,7 @@ public class TicketController {
                 () -> new IllegalArgumentException("Illegal session id"));
         User user = userRepository.findUserByLogin(authentication.getName()).orElseThrow(
                 () -> new IllegalArgumentException("Invalid user id"));
+
         List<Ticket> tickets = ticketRepository.findAllBySessionAndUser(session, user);
         List<Seat> seats = new ArrayList<>();
         tickets.forEach(t -> seats.add(t.getSeat()));
@@ -90,7 +91,7 @@ public class TicketController {
         return "ticket/show-seats";
     }
 
-    @GetMapping("/tickets")
+    @GetMapping("/user-tickets")
     public String showTicketsToUser(Model model, Authentication authentication) {
         List<Ticket> tickets = ticketRepository.findAllByUser(
                 userRepository.findUserByLogin(authentication.getName()).orElseThrow(

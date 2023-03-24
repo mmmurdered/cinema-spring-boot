@@ -6,30 +6,44 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
 </head>
 <body>
-<a th:href="@{/logout}">Logout</a>
-<table>
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Duration</th>
-        <th>IMDB</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="film : ${films}">
-        <td th:text="${film.title}"></td>
-        <td th:text="${film.description}"></td>
-        <td th:text="${film.genre}"></td>
-        <td th:text="${film.duration}"></td>
-        <td th:text="${film.imdbRating}"></td>
-        <td sec:authorize="hasAuthority('ADMIN')">
-            <a th:text="Update" th:href="@{/film/update/{id}(id = ${film.id})}"/>
-            <a th:text="Delete" th:href="@{/film/delete/{id}(id = ${film.id})}"/>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<header class="bg-dark py-3">
+    <div class="container">
+        <h1 class="text-white">Films</h1>
+        <a class="text-white" th:href="@{/session/all}">Schedule</a>
+        <a sec:authorize="hasAuthority('USER')" class="text-white" th:href="@{/ticket/user-tickets}">Your tickets</a>
+    </div>
+</header>
+<main class="container py-4">
+    <div class="row">
+        <div class="col-md-9">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">IMDB</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="film : ${films}">
+                    <td>
+                        <a th:text="${film.title}" th:href="@{/film/{id}(id = ${film.id})}"></a>
+                    </td>
+                    <td th:text="${film.description}"></td>
+                    <td th:text="${film.genre}"></td>
+                    <td th:text="${film.duration}"></td>
+                    <td th:text="${film.imdbRating}"></td>
+                    <td sec:authorize="hasAuthority('ADMIN')">
+                        <a th:text="Update" th:href="@{/film/update/{id}(id = ${film.id})}"/>
+                        <a th:text="Delete" th:href="@{/film/delete/{id}(id = ${film.id})}"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
 </body>
 </html>

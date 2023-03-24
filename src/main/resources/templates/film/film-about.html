@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Film</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div>
+        <img class="img-thumbnail" width="200" height="200"
+             src="https://s.studiobinder.com/wp-content/uploads/2019/06/Movie-Poster-Template-Movie-Credits-StudioBinder.jpg">
+        <p th:text="${film.title}"></p>
+        <p th:text="${film.description}"></p>
+        <p th:text="${film.duration} + ' minutes'"></p>
+        <p th:text="'IMDB: ' + ${film.imdbRating}"></p>
+        <p th:text="Schedule" th:href="@{/session/all}"></p>
+    </div>
+</div>
+</body>
+</html>
