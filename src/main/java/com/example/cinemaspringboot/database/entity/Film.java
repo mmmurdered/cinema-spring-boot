@@ -31,6 +31,9 @@ public class Film {
 
     @Column
     private Double imdbRating;
+
+    @Column
+    private String posterLink;
 }
 
 

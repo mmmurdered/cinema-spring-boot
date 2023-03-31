@@ -33,6 +33,11 @@
             <label class="form-label" for="imdb_rating">Imdb rating</label>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('imdbRating')}" th:errors="*{imdbRating}"></div>
         </div>
+        <div class="form-group">
+            <input class="form-control" type="text" th:field="*{posterLink}" th:value="${filmDto.posterLink}" id="poster_link">
+            <label class="form-label" for="poster_link">Poster direct link</label>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('posterLink')}" th:errors="*{posterLink}"></div>
+        </div>
 
         <button class="btn btn-primary btn-block mb-4" type="submit">Edit film</button>
     </form>

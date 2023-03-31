@@ -38,6 +38,7 @@ public class FilmController {
                 .genre(filmDto.getGenre())
                 .duration(filmDto.getDuration())
                 .imdbRating(filmDto.getImdbRating())
+                .posterLink(filmDto.getPosterLink())
                 .build());
         return "redirect:/films";
     }
@@ -49,7 +50,7 @@ public class FilmController {
     }
 
     @GetMapping("/update/{id}")
-    public String updateFilm(@PathVariable("id") int id, Model model){
+    public String updateFilm(@PathVariable("id") int id, Model model) {
         Film film = filmRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("Invalid film id"));
         model.addAttribute("filmDto", film);
@@ -58,7 +59,7 @@ public class FilmController {
 
     @PostMapping("/update/{id}")
     public String updateFilm(@PathVariable("id") int id, @Valid FilmDto filmDto,
-                             BindingResult bindingResult, Model model){
+                             BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("film", filmDto);
             return "film/edit-film";
@@ -70,12 +71,13 @@ public class FilmController {
                 .genre(filmDto.getGenre())
                 .duration(filmDto.getDuration())
                 .imdbRating(filmDto.getImdbRating())
+                .posterLink(filmDto.getPosterLink())
                 .build());
         return "redirect:/films";
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteFilm(@PathVariable("id") int id){
+    public String deleteFilm(@PathVariable("id") int id) {
         Film film = filmRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("Invalid film id"));
         filmRepository.delete(film);
@@ -83,7 +85,7 @@ public class FilmController {
     }
 
     @GetMapping("/{id}")
-    public String getFilm(@PathVariable("id") int id, Model model){
+    public String getFilm(@PathVariable("id") int id, Model model) {
         Film film = filmRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("Invalid film id"));
         model.addAttribute("film", film);

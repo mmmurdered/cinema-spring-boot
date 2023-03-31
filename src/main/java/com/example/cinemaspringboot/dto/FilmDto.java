@@ -32,6 +32,9 @@ public class FilmDto {
 
     @NotNull
     @Positive
-    @Range(min = 1, max = 3)
+    @Range(min = 1, max = 3, message = "Invalid rating format")
     private Double imdbRating;
+
+    @Size(min = 5, max = 1000)
+    private String posterLink;
 }
