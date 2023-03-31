@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add session</title>
+    <title th:text="#{add.session}">Add session</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -9,12 +9,12 @@
     <form action="#" th:action="@{/session/add}" th:object="${sessionDto}" method="post">
         <div class="form-group">
             <input class="form-control" type="datetime-local" th:field="*{time}" id="time">
-            <label class="form-label" for="time">Time</label>
+            <label class="form-label" for="time" th:text="#{info.time}">Time</label>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></div>
         </div>
         <div class="form-group">
             <input class="form-control" type="number" th:field="*{price}" id="price">
-            <label class="form-label" for="price">Price</label>
+            <label class="form-label" for="price" th:text="#{info.price}">Price</label>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
         </div>
         <div class="form-group">
@@ -26,7 +26,7 @@
             <select th:field="*{film}" id="film">
                 <option class="form-control" th:each="session_film : ${films}" th:value="${session_film.id}" th:text="${session_film.title}">Film</option>
             </select>
-            <label class="form-label" for="film">Film</label>
+            <label class="form-label" for="film" th:text="#{info.film}">Film</label>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('film')}" th:errors="*{film}"></div>
         </div>
         <button class="btn btn-primary btn-block mb-4" type="submit">Add session</button>

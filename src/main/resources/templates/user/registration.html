@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Sign Up!</title>
@@ -10,21 +10,21 @@
     <form action="#" th:action="@{/registration}" th:object="${userDto}" method="post">
         <div class="form-outline mb-4">
             <input class="form-control" type="text" th:field="*{login}" id="login">
-            <label for="login" class="form-label">Login</label>
+            <label for="login" class="form-label" th:text="#{login.login}">Login</label>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div>
         </div>
         <div class="form-outline mb-4">
             <input class="form-control" type="password" th:field="*{password}" id="password">
-            <label for="password" class="form-label">Password</label>
+            <label for="password" class="form-label" th:text="#{login.password}">Password</label>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
         </div>
         <div class="form-outline mb-4">
             <input class="form-control" type="text" th:field="*{email}" id="email">
-            <label for="email" class="form-label">Email</label>
+            <label for="email" class="form-label" th:text="#{register.email}">Email</label>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
         </div>
 
-        <button class="btn btn-primary btn-block mb-4" type="submit">Sign up</button>
+        <button class="btn btn-primary btn-block mb-4" type="submit" th:text="#{register.enter}">Sign up</button>
     </form>
 </div>
 </body>

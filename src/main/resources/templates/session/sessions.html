@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <title>Sessions schedule</title>
+    <title th:text="#{header.schedule}">Sessions schedule</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
@@ -10,9 +10,10 @@
 <body>
 <header class="bg-dark py-3">
     <div class="container">
-        <h1 class="text-white">Schedule</h1>
-        <a class="text-white" th:href="@{/film/all}">Films</a>
-        <a sec:authorize="hasAuthority('USER')" class="text-white" th:href="@{/ticket/user-tickets}">Your tickets</a>
+        <h1 class="text-white" th:text="#{header.schedule}">Schedule</h1>
+        <a class="text-white" th:href="@{/film/all}" th:text="#{header.films}">Films</a>
+        <a sec:authorize="hasAuthority('USER')" class="text-white" th:href="@{/ticket/user-tickets}"
+           th:text="#{header.tickets}">Your tickets</a>
     </div>
 </header>
 <main class="container py-4">
@@ -31,11 +32,11 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">Price</th>
-                    <th sec:authorize="hasAuthority('USER')" scope="col">Buy ticket</th>
-                    <th sec:authorize="hasAuthority('ADMIN')" scope="col">Actions</th>
+                    <th scope="col" th:text="#{info.title}">Title</th>
+                    <th scope="col" th:text="#{info.time}">Time</th>
+                    <th scope="col" th:text="#{info.price}">Price</th>
+                    <th sec:authorize="hasAuthority('USER')" scope="col" th:text="#{info.buy}">Buy ticket</th>
+                    <th sec:authorize="hasAuthority('ADMIN')" scope="col" th:text="#{info.actions}">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,11 +48,11 @@
                     <td th:text="${cinema_session.time}"></td>
                     <td th:text="${cinema_session.price}"></td>
                     <td sec:authorize="hasAuthority('ADMIN')">
-                        <a th:text="Update" th:href="@{/session/update/{id}(id = ${cinema_session.id})}"/>
-                        <a th:text="Delete" th:href="@{/session/delete/{id}(id = ${cinema_session.id})}"/>
+                        <a th:text="#{admin.update}" th:href="@{/session/update/{id}(id = ${cinema_session.id})}"/>
+                        <a th:text="#{admin.delete}" th:href="@{/session/delete/{id}(id = ${cinema_session.id})}"/>
                     </td>
                     <td sec:authorize="hasAuthority('USER')">
-                        <a th:text="Buy" th:href="@{/ticket/buy/{id}(id = ${cinema_session.id})}"/>
+                        <a th:text="#{user.buy}" th:href="@{/ticket/buy/{id}(id = ${cinema_session.id})}"/>
                     </td>
                 </tr>
                 </tbody>
@@ -64,6 +65,5 @@
         <p class="text-center">© 2023 Cinema.</p>
     </div>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add session</title>
+    <title th:text="#{edit.session}">Edit session</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -10,12 +10,12 @@
         <div class="form-group">
             <input class="form-control" type="datetime-local" th:field="*{time}" th:value="${sessionDto.time}"
                    id="time">
-            <label class="form-label" for="time">Time</label>
+            <label class="form-label" for="time" th:text="#{info.time}">Time</label>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></div>
         </div>
         <div class="form-group">
             <input class="form-control" type="number" th:field="*{price}" th:value="${sessionDto.price}" id="price">
-            <label class="form-label" for="price">Price</label>
+            <label class="form-label" for="price" th:text="#{info.price}">Price</label>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
         </div>
         <div class="form-group">
@@ -26,7 +26,7 @@
                  th:errors="*{availablePlaces}"></div>
         </div>
         <div class="form-group">
-            <label for="film">Film</label>
+            <label for="film" th:text="#{info.film}">Film</label>
             <select th:field="*{film}" id="film">
                 <option th:each="session_film : ${films}" th:value="${session_film.id}" th:text="${session_film.title}">
                     Film
@@ -34,7 +34,7 @@
             </select>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('film')}" th:errors="*{film}"></div>
         </div>
-        <button class="btn btn-primary btn-block mb-4" type="submit">Edit session</button>
+        <button class="btn btn-primary btn-block mb-4" type="submit" th:text="#{edit.session}">Edit session</button>
     </form>
 </div>
 </body>

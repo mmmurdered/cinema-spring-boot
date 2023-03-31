@@ -9,9 +9,9 @@
 <body>
 <header class="bg-dark py-3">
     <div class="container">
-        <h1 class="text-white">Tickets</h1>
-        <a class="text-white" th:href="@{/film/all}">Films</a>
-        <a class="text-white" th:href="@{/sessiom/all}">Schedule</a>
+        <h1 class="text-white" th:text="#{header.tickets}">Tickets</h1>
+        <a class="text-white" th:href="@{/film/all}" th:text="#{header.films}">Films</a>
+        <a class="text-white" th:href="@{/sessiom/all}" th:text="#{header.schedule}">Schedule</a>
     </div>
 </header>
 <table>
@@ -26,7 +26,7 @@
     <tr th:each="ticket : ${tickets}">
         <td th:text="${ticket.session.time}"></td>
         <td th:text="${ticket.session.film.title}"></td>
-        <td><a th:text="'Show seats'" th:href="@{/ticket/seats/{id}(id = ${ticket.session.id})}"></a></td>
+        <td><a th:text="#{info.seats}" th:href="@{/ticket/seats/{id}(id = ${ticket.session.id})}"></a></td>
     </tr>
     </tbody>
 </table>

@@ -8,9 +8,9 @@
 <body>
 <header class="bg-dark py-3">
     <div class="container">
-        <h1 class="text-white">Films</h1>
-        <a class="text-white" th:href="@{/session/all}">Schedule</a>
-        <a sec:authorize="hasAuthority('USER')" class="text-white" th:href="@{/ticket/user-tickets}">Your tickets</a>
+        <h1 class="text-white" th:text="#{header.films}">Films</h1>
+        <a class="text-white" th:href="@{/session/all}" th:text="#{header.schedule}">Schedule</a>
+        <a sec:authorize="hasAuthority('USER')" class="text-white" th:href="@{/ticket/user-tickets}" th:text="#{header.tickets}">Your tickets</a>
     </div>
 </header>
 <main class="container py-4">
@@ -19,10 +19,10 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Duration</th>
+                    <th scope="col" th:text="#{info.title}">Title</th>
+                    <th scope="col" th:text="#{info.description}">Description</th>
+                    <th scope="col" th:text="#{info.genre}">Genre</th>
+                    <th scope="col" th:text="#{info.duration}">Duration</th>
                     <th scope="col">IMDB</th>
                 </tr>
                 </thead>
