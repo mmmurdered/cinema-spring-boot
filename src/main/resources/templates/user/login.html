@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title th:text="#{login.enter}">Login</title>
     <meta charset="utf-8">
@@ -23,7 +22,9 @@
         <button type="submit" class="btn btn-primary btn-block mb-4" th:text="#{login.enter}">Sign in</button>
 
         <div class="text-center">
-            <p th:text="#{login.member}"><a th:href="@{/registration}" th:text="#{login.register}">Register</a></p>
+            <p th:text="#{login.member}">
+                <a th:href="@{/registration}" th:text="#{login.register}">Register</a>
+            </p>
         </div>
     </form>
 </div>

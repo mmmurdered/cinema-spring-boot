@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Locale change</title>
+</head>
+<body>
+<div th:fragment="locale" class="ms-auto">
+    <form action="">
+        <select name="lang" onchange="this.form.submit()">
+            <option th:text="#{locale.language}" selected disabled>Language</option>
+            <option value="en">EN</option>
+            <option value="ua">UA</option>
+        </select>
+    </form>
+</div>
+</body>
+</html>

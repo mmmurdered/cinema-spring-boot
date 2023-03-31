@@ -9,21 +9,13 @@
 </head>
 <body>
 <header class="bg-dark py-3">
-    <div class="container">
+    <div class="container d-flex justify-content-between align-items-center">
         <h1 class="text-white" th:text="#{header.schedule}">Schedule</h1>
-        <a class="text-white" th:href="@{/film/all}" th:text="#{header.films}">Films</a>
-        <a sec:authorize="hasAuthority('USER')" class="text-white" th:href="@{/ticket/user-tickets}"
-           th:text="#{header.tickets}">Your tickets</a>
-
-        <div th:fragment="locale">
-            <form action="">
-                <select name="lang" onchange="this.form.submit()">
-                    <option></option>
-                    <option value="en">EN</option>
-                    <option value="ua">UA</option>
-                </select>
-            </form>
+        <div>
+            <a class="text-white me-3" th:href="@{/film/all}" th:text="#{header.films}">Films</a>
+            <a sec:authorize="hasAuthority('USER')" class="text-white me-3" th:href="@{/ticket/user-tickets}" th:text="#{header.tickets}">Your tickets</a>
         </div>
+        <div th:insert="~{locale-change-fragment}"></div>
     </div>
 </header>
 <main class="container py-4">
