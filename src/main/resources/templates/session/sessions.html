@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title th:text="#{header.schedule}">Sessions schedule</title>
@@ -14,6 +14,16 @@
         <a class="text-white" th:href="@{/film/all}" th:text="#{header.films}">Films</a>
         <a sec:authorize="hasAuthority('USER')" class="text-white" th:href="@{/ticket/user-tickets}"
            th:text="#{header.tickets}">Your tickets</a>
+
+        <div th:fragment="locale">
+            <form action="">
+                <select name="lang" onchange="this.form.submit()">
+                    <option></option>
+                    <option value="en">EN</option>
+                    <option value="ua">UA</option>
+                </select>
+            </form>
+        </div>
     </div>
 </header>
 <main class="container py-4">
