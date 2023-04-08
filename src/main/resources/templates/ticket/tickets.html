@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
-    <title>Sessions</title>
+    <title th:text="#{header.schedule}">Sessions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -17,9 +17,9 @@
 <table>
     <thead>
     <tr>
-        <th>Session time</th>
-        <th>Session film</th>
-        <th>Your seats</th>
+        <th th:text="#{info.time}">Session time</th>
+        <th th:text="#{info.film}">Session film</th>
+        <th th:text="#{info.seats}">Your seats</th>
     </tr>
     </thead>
     <tbody>

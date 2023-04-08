@@ -13,7 +13,7 @@
         <p th:text="${film.description}"></p>
         <p th:text="${film.duration} + ' minutes'"></p>
         <p th:text="'IMDB: ' + ${film.imdbRating}"></p>
-        <a th:text="Schedule" th:href="@{/session/all}"></a>
+        <a th:text="#{header.schedule}" th:href="@{/session/all}"></a>
     </div>
 </div>
 </body>

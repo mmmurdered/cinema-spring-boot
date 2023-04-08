@@ -7,7 +7,7 @@
 <body>
 <div th:fragment="locale" class="ms-auto">
     <form action="">
-        <select name="lang" onchange="this.form.submit()">
+        <select class="form-select" name="lang" onchange="this.form.submit()">
             <option th:text="#{locale.language}" selected disabled>Language</option>
             <option value="en">EN</option>
             <option value="ua">UA</option>
