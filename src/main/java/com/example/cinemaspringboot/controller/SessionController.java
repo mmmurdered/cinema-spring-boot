@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Controller
 @RequestMapping("/session")
 public class SessionController {
@@ -30,6 +33,25 @@ public class SessionController {
     @GetMapping("/all")
     public String getAllSessions(Model model) {
         model.addAttribute("cinema_sessions", sessionRepository.findAll());
+        return "session/sessions";
+    }
+
+    @GetMapping("/all/{time}")
+    public String getAllSessionsFilter(@PathVariable("time") String time, Model model) {
+        LocalDateTime today = LocalDateTime.now();
+        List<Session> filteredSessions = sessionRepository.findAll();
+        switch (time) {
+            case "today":
+                filteredSessions = sessionRepository.findAllByTimeIsBetween(today, today.plusDays(1));
+                break;
+            case "tomorrow":
+                filteredSessions = sessionRepository.findAllByTimeIsBetween(today.plusDays(1), today.plusDays(2));
+                break;
+            case "week":
+                filteredSessions = sessionRepository.findAllByTimeIsBetween(today, today.plusDays(7));
+                break;
+        }
+        model.addAttribute("cinema_sessions", filteredSessions);
         return "session/sessions";
     }
 
@@ -54,7 +76,7 @@ public class SessionController {
     }
 
     @GetMapping("/update/{id}")
-    public String updateSession(@PathVariable("id") int id, Model model){
+    public String updateSession(@PathVariable("id") int id, Model model) {
         model.addAttribute("films", filmRepository.findAll());
         Session session = sessionRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("Invalid session id"));
@@ -64,7 +86,7 @@ public class SessionController {
 
     @PostMapping("/update/{id}")
     public String updateSession(@PathVariable("id") int id, @Valid SessionDto sessionDto, BindingResult bindingResult,
-                                Model model){
+                                Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("films", filmRepository.findAll());
             return "session/edit-session";
@@ -80,7 +102,7 @@ public class SessionController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteSession(@PathVariable("id") int id){
+    public String deleteSession(@PathVariable("id") int id) {
         Session session = sessionRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("Invalid session id"));
         sessionRepository.delete(session);
