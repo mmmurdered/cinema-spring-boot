@@ -73,7 +73,7 @@ public class FilmController {
                 .imdbRating(filmDto.getImdbRating())
                 .posterLink(filmDto.getPosterLink())
                 .build());
-        return "redirect:/films";
+        return "redirect:/film/all";
     }
 
     @GetMapping("/delete/{id}")
@@ -81,7 +81,7 @@ public class FilmController {
         Film film = filmRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("Invalid film id"));
         filmRepository.delete(film);
-        return "redirect:/films";
+        return "redirect:/film/all";
     }
 
     @GetMapping("/{id}")
