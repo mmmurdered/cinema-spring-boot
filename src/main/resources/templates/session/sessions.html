@@ -16,6 +16,7 @@
             <a sec:authorize="hasAuthority('USER')" class="text-white me-3" th:href="@{/ticket/user-tickets}" th:text="#{header.tickets}">Your tickets</a>
         </div>
         <div th:insert="~{locale-change-fragment}"></div>
+        <div th:insert="~{logout-fragment}"></div>
     </div>
 </header>
 <main class="container py-4">

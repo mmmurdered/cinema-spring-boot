@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout</title>
+</head>
+<body>
+  <div sec:authorize="hasAnyAuthority('USER', 'ADMIN')" th:fragment="logout" class="ms-auto">
+    <form action="/logout" method="post">
+      <button type="submit" th:text="#{login.logout}">Logout</button>
+    </form>
+  </div>
+</body>
+</html>
