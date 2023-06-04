@@ -8,8 +8,8 @@
 </head>
 <body>
 <div class="d-flex justify-content-center align-items-center vh-100">
-    <p th:text="#{info.seats}">Choose seats</p>
     <form action="#" th:action="@{/ticket/buy/{id}(id = ${cinemaSession.id})}" th:object="${cinemaSession}" method="post" >
+        <p th:text="#{info.seats}">Choose seats</p>
         <table>
             <tbody>
             <tr th:each="row : ${#numbers.sequence(1, 8)}">
@@ -21,8 +21,8 @@
             </tbody>
         </table>
         <button class="btn btn-primary btn-block mb-4" type="submit" th:text="#{user.buy}">Buy</button>
+        <a th:text="#{header.schedule}" th:href="@{/session/all}"></a>
     </form>
-    <a th:text="#{header.schedule}" th:href="@{/session/all}"></a>
 </div>
 </body>
 </html>

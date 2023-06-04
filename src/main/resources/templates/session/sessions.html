@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
 </head>
-<body>
+<body onload="formatTime()">
 <header class="bg-dark py-3">
     <div class="container d-flex justify-content-between align-items-center">
         <h1 class="text-white" th:text="#{header.schedule}">Schedule</h1>
@@ -30,12 +30,40 @@
             </ul>
         </div>
         <div class="col-md-9">
+            <form action="">
+                <select sec:authorize="hasAuthority('ADMIN')" class="form-select" name="alarm" onchange="this.form.submit()">
+                    <option th:text="#{region.info}" selected disabled></option>
+                    <option>Черкаська область</option>
+                    <option>Чернігівська область</option>
+                    <option>Чернівецька область</option>
+                    <option>Дніпропетровська область</option>
+                    <option>Донецька область</option>
+                    <option>Івано-Франківська область</option>
+                    <option>Харківська область</option>
+                    <option>Херсонська область</option>
+                    <option>Хмельницька область</option>
+                    <option>Кіровоградська область</option>
+                    <option>Київська область</option>
+                    <option>Луганська область</option>
+                    <option>Львівська область</option>
+                    <option>Миколаївська область</option>
+                    <option>Одеська область</option>
+                    <option>Полтавська область</option>
+                    <option>Рівненська область</option>
+                    <option>Сумська область</option>
+                    <option>Тернопільська область</option>
+                    <option>Вінницька область</option>
+                    <option>Волинська область</option>
+                    <option>Закарпатська область</option>
+                    <option>Запорізька область</option>
+                    <option>Житомирська область</option>
+                </select>
+            </form>
             <h2 th:text="#{header.schedule}">Sessions</h2>
             <table class="table">
                 <thead>
                 <tr>
                     <th scope="col" th:text="#{info.title}">Title</th>
-                    <th scope="col" th:text="#{info.time}">Time</th>
                     <th scope="col" th:text="#{info.price}">Price</th>
                     <th sec:authorize="hasAuthority('USER')" scope="col" th:text="#{info.buy}">Buy ticket</th>
                     <th sec:authorize="hasAuthority('ADMIN')" scope="col" th:text="#{info.actions}">Actions</th>
@@ -47,7 +75,7 @@
                         <a th:text="${cinema_session.film.title}"
                            th:href="@{/film/{id}(id = ${cinema_session.film.id})}"></a>
                     </td>
-                    <td th:text="${cinema_session.time}"></td>
+                    <td th:text="${cinema_session.time}" class="time"></td>
                     <td th:text="${cinema_session.price}"></td>
                     <td sec:authorize="hasAuthority('ADMIN')">
                         <a th:text="#{admin.update}" th:href="@{/session/update/{id}(id = ${cinema_session.id})}"/>
@@ -62,10 +90,26 @@
         </div>
     </div>
 </main>
-<footer class="bg-dark py-3 text-white">
+<footer class="bg-dark py-3 text-white fixed-bottom">
     <div class="container">
         <p class="text-center">© 2023 Cinema.</p>
     </div>
 </footer>
 </body>
+
+<script>
+    function formatTime() {
+        var timeElements = document.getElementsByClassName('time');
+        for (var i = 0; i < timeElements.length; i++) {
+            var currentTime = new Date(timeElements[i].textContent);
+            var year = currentTime.getFullYear();
+            var month = ('0' + (currentTime.getMonth() + 1)).slice(-2);
+            var day = ('0' + currentTime.getDate()).slice(-2);
+            var hours = ('0' + currentTime.getHours()).slice(-2);
+            var minutes = ('0' + currentTime.getMinutes()).slice(-2);
+            var formattedTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes;
+            timeElements[i].textContent = formattedTime;
+        }
+    }
+</script>
 </html>

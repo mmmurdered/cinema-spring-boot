@@ -24,9 +24,11 @@ dependencies {
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.0.M1'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.1.0'
+    implementation 'io.github.bonigarcia:webdrivermanager:5.1.1'
+
 
     runtimeOnly 'org.postgresql:postgresql'
-    runtimeOnly 'mysql:mysql-connector-java'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
 }

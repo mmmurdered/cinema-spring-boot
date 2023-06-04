@@ -43,5 +43,4 @@ public class RegistrationController {
                 .build());
         return "redirect:/session/all";
     }
-
 }

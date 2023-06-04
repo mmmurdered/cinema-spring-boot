@@ -8,8 +8,8 @@ import com.example.cinemaspringboot.database.repository.SeatRepository;
 import com.example.cinemaspringboot.database.repository.SessionRepository;
 import com.example.cinemaspringboot.database.repository.TicketRepository;
 import com.example.cinemaspringboot.database.repository.UserRepository;
+import com.example.cinemaspringboot.parser.AlarmParser;
 import com.example.cinemaspringboot.wrapper.SeatListWrapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +41,10 @@ public class TicketController {
 
     @GetMapping("/buy/{id}")
     public String buyTicket(@PathVariable("id") int id, Model model) {
+        if(AlarmParser.findRegionsWhereAlarm().contains(System.getProperty("alarm_region"))){
+            return "redirect:/ticket/user-tickets";
+        }
+
         model.addAttribute("cinemaSession", sessionRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("Illegal session id")));
         List<Ticket> tickets = ticketRepository.findAllBySession(sessionRepository.findById(id).orElseThrow(
@@ -74,7 +78,7 @@ public class TicketController {
                 .user(user)
                 .session(session)
                 .build()));
-        return "redirect:/session/all";
+        return "redirect:/ticket/user-tickets";
     }
 
     @GetMapping("/seats/{id}")
