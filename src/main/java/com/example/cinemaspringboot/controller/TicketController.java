@@ -1,5 +1,6 @@
 package com.example.cinemaspringboot.controller;
 
+import com.example.cinemaspringboot.service.email.EmailSenderService;
 import com.example.cinemaspringboot.database.entity.Seat;
 import com.example.cinemaspringboot.database.entity.Session;
 import com.example.cinemaspringboot.database.entity.Ticket;
@@ -31,18 +32,22 @@ public class TicketController {
 
     private final UserRepository userRepository;
 
+    private final EmailSenderService emailSenderService;
+
     public TicketController(SessionRepository sessionRepository, SeatRepository seatRepository,
-                            TicketRepository ticketRepository, UserRepository userRepository) {
+                            TicketRepository ticketRepository, UserRepository userRepository,
+                            EmailSenderService emailSenderService) {
         this.sessionRepository = sessionRepository;
         this.seatRepository = seatRepository;
         this.ticketRepository = ticketRepository;
         this.userRepository = userRepository;
+        this.emailSenderService = emailSenderService;
     }
 
     @GetMapping("/buy/{id}")
     public String buyTicket(@PathVariable("id") int id, Model model) {
         if(AlarmParser.findRegionsWhereAlarm().contains(System.getProperty("alarm_region"))){
-            return "redirect:/ticket/user-tickets";
+            return "redirect:/session/all";
         }
 
         model.addAttribute("cinemaSession", sessionRepository.findById(id).orElseThrow(
@@ -78,6 +83,14 @@ public class TicketController {
                 .user(user)
                 .session(session)
                 .build()));
+        StringBuilder bodyMessage = new StringBuilder("Your seats: \n");
+        allSeats.forEach(seat -> {
+            bodyMessage.append("Row/Col: ").append(seat.getRow()).append(" - ").append(seat.getCol()).append(" | \n");
+        });
+        bodyMessage.append("\nTime: ").append(session.getTime()).append("\n");
+        bodyMessage.append("Film: ").append(session.getFilm().getTitle());
+
+        emailSenderService.sendEmail(user.getEmail(), "Your tickets", bodyMessage.toString());
         return "redirect:/ticket/user-tickets";
     }
 

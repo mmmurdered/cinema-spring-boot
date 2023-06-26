@@ -6,26 +6,26 @@
 </head>
 <body>
 <div class="d-flex align-items-center justify-content-center vh-100">
-    <form action="#" th:action="@{/session/update/{id}(id = ${sessionDto.id})}" th:object="${sessionDto}" method="post">
-        <div class="form-group">
+    <form action="#" th:action="@{/session/update/{id}(id = ${sessionDto.id})}" th:object="${sessionDto}" method="post" class="text-center">
+        <div class="form-group mb-3">
             <input class="form-control" type="datetime-local" th:field="*{time}" th:value="${sessionDto.time}"
                    id="time">
             <label class="form-label" for="time" th:text="#{info.time}">Time</label>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></div>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
             <input class="form-control" type="number" th:field="*{price}" th:value="${sessionDto.price}" id="price">
             <label class="form-label" for="price" th:text="#{info.price}">Price</label>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
             <input class="form-control" type="number" th:field="*{availablePlaces}"
                    th:value="${sessionDto.availablePlaces}" id="availablePlaces">
             <label class="form-label" for="availablePlaces">Available places</label>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('availablePlaces')}"
                  th:errors="*{availablePlaces}"></div>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label for="film" th:text="#{info.film}">Film</label>
             <select th:field="*{film}" id="film">
                 <option th:each="session_film : ${films}" th:value="${session_film.id}" th:text="${session_film.title}">

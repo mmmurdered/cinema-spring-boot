@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="d-flex align-items-center justify-content-center vh-100">
-    <form action="#" th:action="@{/registration}" th:object="${userDto}" method="post">
+    <form action="#" th:action="@{/registration}" th:object="${userDto}" method="post" class="text-center">
         <div class="form-outline mb-4">
             <input class="form-control" type="text" th:field="*{login}" id="login">
             <label for="login" class="form-label" th:text="#{login.login}">Login</label>

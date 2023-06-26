@@ -1,4 +1,4 @@
-package com.example.cinemaspringboot.service;
+package com.example.cinemaspringboot.service.details;
 
 import com.example.cinemaspringboot.database.entity.User;
 import com.example.cinemaspringboot.database.repository.UserRepository;

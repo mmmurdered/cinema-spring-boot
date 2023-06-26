@@ -22,14 +22,15 @@
 <main class="container py-4">
     <div class="row">
         <div class="col-md-3">
-            <h2>Filter</h2>
+            <h2 th:text="#{info.filter}">Filter</h2>
             <ul class="list-group">
-                <a th:href="@{/session/all/{time}(time = today)}" class="list-group-item">Today</a>
-                <a th:href="@{/session/all/{time}(time = tomorrow)}" class="list-group-item">Tomorrow</a>
-                <a th:href="@{/session/all/{time}(time = week)}" class="list-group-item">Week</a>
+                <a th:href="@{/session/all/{time}(time = today)}" class="list-group-item" th:text="#{info.today}">Today</a>
+                <a th:href="@{/session/all/{time}(time = tomorrow)}" class="list-group-item" th:text="#{info.tomorrow}">Tomorrow</a>
+                <a th:href="@{/session/all/{time}(time = week)}" class="list-group-item" th:text="#{info.week}">Week</a>
             </ul>
         </div>
         <div class="col-md-9">
+            <p th:text="#{alarm.ticket.info}"></p>
             <form action="">
                 <select sec:authorize="hasAuthority('ADMIN')" class="form-select" name="alarm" onchange="this.form.submit()">
                     <option th:text="#{region.info}" selected disabled></option>
